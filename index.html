@@ -6,12 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <!-- NOUVEAU: MarkerCluster CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
   
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <!-- NOUVEAU: MarkerCluster JS -->
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   
   <style>
@@ -24,25 +22,12 @@
     .hint{font-size:12px;color:#8a93a1}
     .divider{height:1px;background:#1f2630;margin:12px 0}
     
-    /* Style des clusters */
-    .marker-cluster-small {
-      background-color: rgba(59, 130, 246, 0.6);
-    }
-    .marker-cluster-small div {
-      background-color: rgba(59, 130, 246, 0.8);
-    }
-    .marker-cluster-medium {
-      background-color: rgba(245, 158, 11, 0.6);
-    }
-    .marker-cluster-medium div {
-      background-color: rgba(245, 158, 11, 0.8);
-    }
-    .marker-cluster-large {
-      background-color: rgba(239, 68, 68, 0.6);
-    }
-    .marker-cluster-large div {
-      background-color: rgba(239, 68, 68, 0.8);
-    }
+    .marker-cluster-small {background-color: rgba(59, 130, 246, 0.6);}
+    .marker-cluster-small div {background-color: rgba(59, 130, 246, 0.8);}
+    .marker-cluster-medium {background-color: rgba(245, 158, 11, 0.6);}
+    .marker-cluster-medium div {background-color: rgba(245, 158, 11, 0.8);}
+    .marker-cluster-large {background-color: rgba(239, 68, 68, 0.6);}
+    .marker-cluster-large div {background-color: rgba(239, 68, 68, 0.8);}
   </style>
 </head>
 <body>
@@ -50,7 +35,6 @@
 <header>
   <div class="brand">SP Tool</div>
   <div class="pill controls">
-    <label class="small">Charger .ljson<input id="file" type="file" accept=".ljson,.jsonl,text/plain" multiple></label>
     <label class="small">Fond de carte<input id="bgimg" type="file" accept="image/*"></label>
     <button id="fit" type="button">Centrer</button>
     <button id="clear" type="button">Vider</button>
@@ -59,24 +43,40 @@
   </div>
   <div id="tabs">
     <div class="tab active" data-mod="loot">Loot</div>
+    <div class="tab" data-mod="vehicles">Vehicules</div>
   </div>
 </header>
 
 <main>
+  <!-- CONTENU LOOT -->
   <aside id="sidebar">
     <div id="filters">
       <div class="section">
         <input id="search" placeholder="Rechercher: nom, classe, id">
       </div>
+      <div class="section">
+        <label class="small">Charger .ljson<input id="file" type="file" accept=".ljson,.jsonl,text/plain" multiple></label>
+      </div>
       <div class="section" id="loot-filters"></div>
       <div class="section">
         <button id="selectAll" type="button">Tout cocher</button>
-        <button id="unselectAll" type="button">Tout décocher</button>
+        <button id="unselectAll" type="button">Tout decocher</button>
       </div>
     </div>
     <div id="list"></div>
     <div class="footer" id="stats"></div>
   </aside>
+
+  <!-- CONTENU VEHICULES (masque par defaut) -->
+  <aside id="vehicle-sidebar" style="display:none;">
+    <div style="padding:10px;border-bottom:1px solid var(--border);">
+      <label class="small">Charger logs vehicules<input id="vehicle-file" type="file" accept=".ljson,.jsonl,text/plain" multiple></label>
+    </div>
+    <div id="vehicle-filters" style="padding:10px;border-bottom:1px solid var(--border);overflow:auto;max-height:400px;"></div>
+    <div id="vehicle-list" style="flex:1;overflow:auto;padding:10px;"></div>
+    <div class="footer" id="vehicle-stats"></div>
+  </aside>
+
   <section id="map"></section>
 </main>
 
@@ -84,12 +84,12 @@
   <div class="home-card">
     <h1>SP Tool</h1>
     <div class="home-row">
-      <label class="hint">Sélectionner la carte</label>
+      <label class="hint">Selectionner la carte</label>
       <div class="radio-group">
         <label><input type="radio" name="mapsel" value="chernarus" checked> Chernarus</label>
-        <label><input type="radio" name="mapsel" value="livonia"> Livonia (placeholder)</label>
-        <label><input type="radio" name="mapsel" value="namalsk"> Namalsk (placeholder)</label>
-        <label><input type="radio" name="mapsel" value="sakhal"> Sakhal (placeholder)</label>
+        <label><input type="radio" name="mapsel" value="livonia"> Livonia</label>
+        <label><input type="radio" name="mapsel" value="namalsk"> Namalsk</label>
+        <label><input type="radio" name="mapsel" value="sakhal"> Sakhal</label>
       </div>
     </div>
     <div class="home-row">
