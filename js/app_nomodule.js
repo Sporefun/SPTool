@@ -7,7 +7,7 @@
     items: [],
 
     // timeline avec reconstruction d'état
-    frames: [],          // [{ts:"...", items:[...complet...], changes:N}, ...]
+    frames: [],
     tsIndex: new Map(),
     currentFrame: 0,
     playing: false,
@@ -17,9 +17,14 @@
     filtered: [],
     classes: new Set(),
     classAllow: new Set(),
+    searchText: "",
 
     // carte
-    markerById: new Map()
+    markerById: new Map(),
+
+    // panneau de détails
+    detailsOpen: false,
+    detailsClass: ""
   };
 
   // ----- Utils -----
@@ -49,7 +54,6 @@
       dragging: true 
     });
     
-    // Clustering de markers pour les performances
     if (typeof L.markerClusterGroup !== 'undefined') {
       markerCluster = L.markerClusterGroup({
         maxClusterRadius: 80,
@@ -90,7 +94,6 @@
     const target = markerCluster || layerGroup;
     if (!target) return;
 
-    // Si changement de frame, tout recréer
     if (state.currentFrame !== lastFrameIndex){
       if (markerCluster) {
         markerCluster.clearLayers();
@@ -107,7 +110,6 @@
       want.set(it.id, it); 
     }
 
-    // Supprimer les markers absents
     const toRemove = [];
     for (const [id, mk] of Array.from(state.markerById.entries())){
       if (!want.has(id)){
@@ -123,7 +125,6 @@
       state.markerById.delete(id);
     }
 
-    // Ajouter les markers manquants par batch
     const toAdd = [];
     for (const [id, it] of want.entries()){
       if (!state.markerById.has(id)) toAdd.push(it);
@@ -157,7 +158,6 @@
         i++;
       }
       
-      // Ajouter le batch en une fois
       if (markerCluster) {
         markerCluster.addLayers(batch);
       } else if (layerGroup) {
@@ -188,7 +188,6 @@
   function buildFramesWithFullState(allItems){
     console.log('[Timeline] Construction des frames avec état complet...');
     
-    // 1. Grouper par timestamp
     const byTs = new Map();
     for (let i = 0; i < allItems.length; i++){
       const item = allItems[i];
@@ -197,32 +196,26 @@
       byTs.get(ts).push(item);
     }
     
-    // 2. Trier les timestamps
     const tsList = Array.from(byTs.keys()).sort();
     console.log('[Timeline] ' + tsList.length + ' timestamps trouvés');
     
-    // 3. Reconstruire l'état complet pour chaque frame
     const frames = [];
-    const itemsState = new Map(); // id -> dernier état connu
+    const itemsState = new Map();
     
     for (let t = 0; t < tsList.length; t++){
       const ts = tsList[t];
       const frameChanges = byTs.get(ts);
       
-      // Appliquer les changements de cette frame
       for (let i = 0; i < frameChanges.length; i++){
         const item = frameChanges[i];
         
         if (item.type === "item_remove") {
-          // Supprimer l'item de l'état
           itemsState.delete(item.id);
         } else if (item.type === "item") {
-          // Ajouter ou mettre à jour l'item
           itemsState.set(item.id, item);
         }
       }
       
-      // Créer une snapshot complète de l'état actuel
       const frameItems = Array.from(itemsState.values());
       frames.push({ 
         ts: ts, 
@@ -260,10 +253,8 @@
     console.log('[Load] ' + all.length + ' lignes parsées');
     state.items = all;
 
-    // Construction des frames avec état complet
     state.frames = buildFramesWithFullState(all);
     
-    // Index des timestamps
     state.tsIndex.clear();
     for (let i = 0; i < state.frames.length; i++) {
       state.tsIndex.set(state.frames[i].ts, i);
@@ -272,7 +263,6 @@
     state.currentFrame = 0;
     lastFrameIndex = -1;
 
-    // Classes uniques
     const classSet = new Set();
     for (let i = 0; i < all.length; i++){
       if (all[i].class) classSet.add(all[i].class);
@@ -309,7 +299,6 @@
 
   // ----- Filtres -----
   function applyFilters(){
-    // Si frame a changé, on recrée tout
     if (state.currentFrame !== lastFrameIndex){
       if (markerCluster) {
         markerCluster.clearLayers();
@@ -320,83 +309,187 @@
       lastFrameIndex = state.currentFrame;
     }
 
-    const q = document.getElementById('search').value.trim().toLowerCase();
+    const q = state.searchText.toLowerCase();
     const frameItems = state.frames.length > 0 ? state.frames[state.currentFrame].items : state.items;
 
-    let arr = frameItems.filter(it => state.classAllow.has(it.class));
+    // Filtrer UNIQUEMENT pour la carte (selon classAllow)
+    let arrForMap = frameItems.filter(it => state.classAllow.has(it.class));
+    
     if (q){
-      arr = arr.filter(it =>
+      arrForMap = arrForMap.filter(it =>
         (it.name||'').toLowerCase().includes(q) ||
         (it.class||'').toLowerCase().includes(q) ||
         String(it.id).includes(q)
       );
     }
-    state.filtered = arr;
-    renderList();
+    
+    state.filtered = arrForMap;
+    
+    if (!state.detailsOpen) {
+      renderList();
+    }
+    
     renderMarkersDiff();
     updateStats();
     updatePlayerTs();
   }
 
-  // ----- UI: liste virtualisée simple -----
-  let listScrollTop = 0;
-  const ITEM_HEIGHT = 110; // hauteur approximative d'une card
-  const BUFFER = 5; // items avant/après viewport
-
+  // ----- UI: liste avec compteurs et bouton détails -----
   function renderList(){
     const cont = document.getElementById('list');
-    const currentScroll = cont.scrollTop;
-    
     cont.innerHTML = "";
     
-    if (state.filtered.length === 0) {
+    const frameItems = state.frames.length > 0 ? state.frames[state.currentFrame].items : state.items;
+    
+    if (frameItems.length === 0) {
       cont.innerHTML = '<div class="small" style="padding:10px">Aucun item</div>';
       return;
     }
     
-    // Calcul du viewport
-    const containerHeight = cont.clientHeight;
-    const totalHeight = state.filtered.length * ITEM_HEIGHT;
-    const startIndex = Math.max(0, Math.floor(currentScroll / ITEM_HEIGHT) - BUFFER);
-    const endIndex = Math.min(state.filtered.length, Math.ceil((currentScroll + containerHeight) / ITEM_HEIGHT) + BUFFER);
+    // Compter par classe (TOUTES les classes, pas seulement cochées)
+    const classCounts = new Map();
+    for (let i = 0; i < frameItems.length; i++){
+      const it = frameItems[i];
+      const cls = it.class;
+      if (!classCounts.has(cls)) {
+        classCounts.set(cls, 0);
+      }
+      classCounts.set(cls, classCounts.get(cls) + 1);
+    }
     
-    // Container pour le scroll virtuel
-    const wrapper = document.createElement('div');
-    wrapper.style.height = totalHeight + 'px';
-    wrapper.style.position = 'relative';
+    // Filtrer par recherche
+    const q = state.searchText.toLowerCase();
+    let classesToShow = Array.from(classCounts.keys()).sort((a,b) => a.localeCompare(b));
+    
+    if (q) {
+      classesToShow = classesToShow.filter(cls => cls.toLowerCase().includes(q));
+    }
     
     const frag = document.createDocumentFragment();
     
-    for (let i = startIndex; i < endIndex; i++){
-      const it = state.filtered[i];
+    for (let i = 0; i < classesToShow.length; i++){
+      const cls = classesToShow[i];
+      const count = classCounts.get(cls);
+      
       const el = document.createElement('div');
-      el.className = 'card';
-      el.style.cursor = 'pointer';
-      el.style.position = 'absolute';
-      el.style.top = (i * ITEM_HEIGHT) + 'px';
-      el.style.left = '0';
-      el.style.right = '0';
+      el.className = 'class-row';
+      el.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px;border-bottom:1px solid var(--border);';
       
-      el.innerHTML = `
-        <div class="title">${escapeHtml(it.name||'')}</div>
-        <div class="sub">ID: ${it.id} • ${escapeHtml(it.class||'')}</div>
-        <div class="badges">
-          <span class="badge">${escapeHtml(state.worldName)}</span>
-          <span class="badge">x:${it.pos.x.toFixed(1)} z:${it.pos.z.toFixed(1)}</span>
-          <span class="badge">${it.hp_percent}% HP</span>
-        </div>
-        <div class="hpbar"><div class="hpfill" style="width:${it.hp_percent}%; background:${hpColor(it.hp_percent)}"></div></div>`;
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = state.classAllow.has(cls);
+      cb.addEventListener('change', (function(c){
+        return function(e){
+          if (e.target.checked) {
+            state.classAllow.add(c);
+          } else {
+            state.classAllow.delete(c);
+          }
+          applyFilters();
+        };
+      })(cls));
       
-      el.addEventListener('click', (function(id){ 
-        return function(){ focusById(id, 0); }; 
-      })(it.id));
+      const label = document.createElement('span');
+      label.textContent = cls + ' (' + count + ')';
+      label.style.flex = '1';
+      label.style.cursor = 'pointer';
+      label.addEventListener('click', function(){
+        cb.checked = !cb.checked;
+        cb.dispatchEvent(new Event('change'));
+      });
       
+      const detailBtn = document.createElement('button');
+      detailBtn.textContent = 'Détails';
+      detailBtn.style.cssText = 'padding:4px 8px;font-size:11px;';
+      detailBtn.addEventListener('click', (function(c){
+        return function(){
+          openDetails(c);
+        };
+      })(cls));
+      
+      el.appendChild(cb);
+      el.appendChild(label);
+      el.appendChild(detailBtn);
       frag.appendChild(el);
     }
     
-    wrapper.appendChild(frag);
-    cont.appendChild(wrapper);
-    cont.scrollTop = currentScroll;
+    cont.appendChild(frag);
+  }
+
+  // ----- Panneau de détails -----
+  function openDetails(className){
+    state.detailsOpen = true;
+    state.detailsClass = className;
+    
+    const frameItems = state.frames.length > 0 ? state.frames[state.currentFrame].items : state.items;
+    const classItems = frameItems.filter(it => it.class === className);
+    
+    const cont = document.getElementById('list');
+    cont.innerHTML = "";
+    
+    // Header avec bouton retour
+    const header = document.createElement('div');
+    header.style.cssText = 'padding:10px;border-bottom:2px solid var(--border);background:var(--card);position:sticky;top:0;z-index:10;';
+    
+    const backBtn = document.createElement('button');
+    backBtn.textContent = '← Retour';
+    backBtn.style.cssText = 'margin-bottom:8px;';
+    backBtn.addEventListener('click', closeDetails);
+    
+    const title = document.createElement('div');
+    title.style.cssText = 'font-weight:600;font-size:14px;';
+    title.textContent = className + ' - ' + classItems.length + ' items';
+    
+    header.appendChild(backBtn);
+    header.appendChild(title);
+    cont.appendChild(header);
+    
+    // Liste des items
+    const itemsList = document.createElement('div');
+    itemsList.style.cssText = 'padding:10px;';
+    
+    for (let i = 0; i < classItems.length; i++){
+      const it = classItems[i];
+      
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.cssText = 'margin-bottom:10px;cursor:pointer;';
+      
+      card.innerHTML = `
+        <div style="font-weight:600;margin-bottom:4px;font-size:11px;color:var(--muted);">ID: ${it.id}</div>
+        <div class="sub">HP: ${it.hp_percent}%</div>
+        <div class="hpbar"><div class="hpfill" style="width:${it.hp_percent}%;background:${hpColor(it.hp_percent)}"></div></div>
+        <div class="sub" style="margin-top:4px;">x:${it.pos.x.toFixed(1)} y:${it.pos.y.toFixed(1)} z:${it.pos.z.toFixed(1)}</div>
+      `;
+      
+      card.addEventListener('click', (function(id){
+        return function(){
+          focusById(id, 2);
+        };
+      })(it.id));
+      
+      itemsList.appendChild(card);
+    }
+    
+    cont.appendChild(itemsList);
+    
+    // Footer avec bouton fermer
+    const footer = document.createElement('div');
+    footer.style.cssText = 'padding:10px;border-top:1px solid var(--border);background:var(--card);position:sticky;bottom:0;';
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = 'Fermer';
+    closeBtn.style.cssText = 'width:100%;';
+    closeBtn.addEventListener('click', closeDetails);
+    
+    footer.appendChild(closeBtn);
+    cont.appendChild(footer);
+  }
+
+  function closeDetails(){
+    state.detailsOpen = false;
+    state.detailsClass = "";
+    renderList();
   }
 
   function updateStats(){
@@ -417,37 +510,16 @@
   function buildFilters(){
     const host = document.getElementById('loot-filters');
     host.innerHTML = "";
-    const classes = Array.from(state.classes).sort((a,b) => a.localeCompare(b));
-    const group = document.createElement('div');
-    const title = document.createElement('h3');
-    title.textContent = "Loot • Classes";
-    group.appendChild(title);
     
-    for (let i = 0; i < classes.length; i++){
-      const cls = classes[i];
-      const div = document.createElement('label');
-      div.className = 'checkbox';
-      const cb = document.createElement('input');
-      cb.type = 'checkbox'; 
-      cb.checked = state.classAllow.has(cls);
-      cb.addEventListener('change', (function(c){
-        return function(e){
-          if (e.target.checked) {
-            state.classAllow.add(c);
-          } else {
-            state.classAllow.delete(c);
-          }
-          applyFilters();
-        };
-      })(cls));
-      
-      const span = document.createElement('span'); 
-      span.textContent = cls;
-      div.appendChild(cb); 
-      div.appendChild(span);
-      group.appendChild(div);
-    }
-    host.appendChild(group);
+    const title = document.createElement('h3');
+    title.textContent = "Classes d'items";
+    title.style.cssText = 'margin:0 0 8px 0;font-size:14px;';
+    host.appendChild(title);
+    
+    const hint = document.createElement('div');
+    hint.className = 'small';
+    hint.textContent = 'Utilisez la recherche pour filtrer par nom de classe';
+    host.appendChild(hint);
   }
 
   // ----- Lecteur -----
@@ -503,19 +575,11 @@
     setTimeout(loop, delay);
   }
 
-  // ----- Scroll virtualisé sur la liste -----
-  function setupListScroll(){
-    const cont = document.getElementById('list');
-    if (!cont) return;
-    cont.addEventListener('scroll', debounce(renderList, 50));
-  }
-
   // ----- Wiring -----
   window.addEventListener('DOMContentLoaded', function(){
     document.body.classList.add('overlay-open');
 
     initMap();
-    setupListScroll();
 
     // Overlay boot
     const homeBtn = document.getElementById('homeStart');
@@ -568,18 +632,22 @@
       window.location.reload();
     });
 
-    // Recherche avec debounce
-    document.getElementById('search').addEventListener('input', debounce(applyFilters, 120));
+    // Recherche
+    document.getElementById('search').addEventListener('input', debounce(function(e){
+      state.searchText = e.target.value;
+      if (state.detailsOpen) {
+        closeDetails();
+      }
+      applyFilters();
+    }, 120));
 
     document.getElementById('selectAll').addEventListener('click', function(){
-      state.classAllow = new Set(state.classes); 
-      buildFilters(); 
+      state.classAllow = new Set(state.classes);
       applyFilters();
     });
     
     document.getElementById('unselectAll').addEventListener('click', function(){
-      state.classAllow = new Set(); 
-      buildFilters(); 
+      state.classAllow = new Set();
       applyFilters();
     });
   });
