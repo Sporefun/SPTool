@@ -113,13 +113,14 @@
     
     console.log('[Render] Removing', toRemove.length, 'markers');
     
-    for (const {id, mk} of toRemove) {
+    for (let i = 0; i < toRemove.length; i++) {
+      const item = toRemove[i];
       if (markerCluster) {
-        markerCluster.removeLayer(mk);
+        markerCluster.removeLayer(item.mk);
       } else if (layerGroup) {
-        layerGroup.removeLayer(mk);
+        layerGroup.removeLayer(item.mk);
       }
-      state.markerById.delete(id);
+      state.markerById.delete(item.id);
     }
 
     // Ajouter les markers manquants
@@ -131,19 +132,19 @@
     console.log('[Render] Adding', toAdd.length, 'markers');
 
     if (toAdd.length === 0) {
-      console.log('[Render] Nothing to add, done');
+      console.log('[Render] Nothing to add, done. Total markers:', state.markerById.size);
       return;
     }
 
-    let i = 0;
+    let idx = 0;
     const CHUNK = 500;
     
     function step(){
-      const end = Math.min(i + CHUNK, toAdd.length);
+      const end = Math.min(idx + CHUNK, toAdd.length);
       const batch = [];
       
-      while (i < end){
-        const it = toAdd[i];
+      while (idx < end){
+        const it = toAdd[idx];
         const ll = toLatLng(it.pos.x, it.pos.z);
         const mk = L.circleMarker(ll, { 
           radius: 3, 
@@ -160,7 +161,7 @@
         
         batch.push(mk);
         state.markerById.set(it.id, mk);
-        i++;
+        idx++;
       }
       
       if (markerCluster) {
@@ -169,7 +170,7 @@
         batch.forEach(mk => mk.addTo(layerGroup));
       }
       
-      if (i < toAdd.length) {
+      if (idx < toAdd.length) {
         requestAnimationFrame(step);
       } else {
         console.log('[Render] Done adding markers. Total:', state.markerById.size);
@@ -357,12 +358,28 @@
   }
 
   // ----- Filtres -----
+  let applyFiltersTimeout = null;
+  
   function applyFilters(){
-    // TOUJOURS nettoyer au premier appel ou quand on change de frame
-    const shouldClear = (lastFrameIndex === -1) || (state.currentFrame !== lastFrameIndex);
+    // Éviter les appels multiples rapides
+    if (applyFiltersTimeout) {
+      clearTimeout(applyFiltersTimeout);
+    }
     
-    if (shouldClear){
-      console.log('[Filters] Clearing all markers (frame change or initial load)');
+    applyFiltersTimeout = setTimeout(function(){
+      applyFiltersNow();
+      applyFiltersTimeout = null;
+    }, 10);
+  }
+  
+  function applyFiltersNow(){
+    console.log('[Filters] === START applyFilters ===');
+    console.log('[Filters] lastFrameIndex:', lastFrameIndex, 'currentFrame:', state.currentFrame);
+    console.log('[Filters] markerById.size BEFORE clear:', state.markerById.size);
+    
+    // TOUJOURS nettoyer au premier appel OU quand on change de frame
+    if (lastFrameIndex !== state.currentFrame){
+      console.log('[Filters] CLEARING ALL MARKERS');
       if (markerCluster) {
         markerCluster.clearLayers();
       } else if (layerGroup) {
@@ -370,13 +387,19 @@
       }
       state.markerById.clear();
       lastFrameIndex = state.currentFrame;
+      console.log('[Filters] markerById.size AFTER clear:', state.markerById.size);
     }
 
     const q = state.searchText.toLowerCase();
     const frameItems = state.frames.length > 0 ? state.frames[state.currentFrame].items : state.items;
 
+    console.log('[Filters] Total items in current frame:', frameItems.length);
+    console.log('[Filters] Classes allowed:', Array.from(state.classAllow));
+
     // Filtrer pour la carte : SEULEMENT les classes cochées
     let arrForMap = frameItems.filter(it => state.classAllow.has(it.class));
+    
+    console.log('[Filters] After class filter:', arrForMap.length);
     
     // Appliquer la recherche SEULEMENT si du texte est saisi
     if (q){
@@ -385,20 +408,25 @@
         (it.class||'').toLowerCase().includes(q) ||
         String(it.id).includes(q)
       );
+      console.log('[Filters] After search filter:', arrForMap.length);
     }
     
     // state.filtered = items affichés sur la CARTE uniquement
     state.filtered = arrForMap;
     
-    console.log('[Filters] Filtered items:', state.filtered.length, 'Total markers on map:', state.markerById.size);
+    console.log('[Filters] Final filtered count:', state.filtered.length);
     
     if (!state.detailsOpen) {
       renderList();
     }
     
+    console.log('[Filters] Calling renderMarkersDiff');
     renderMarkersDiff();
+    
     updateStats();
     updatePlayerTs();
+    
+    console.log('[Filters] === END applyFilters ===');
   }
 
   // ----- UI: liste avec compteurs et bouton détails -----
@@ -447,12 +475,13 @@
       cb.checked = state.classAllow.has(cls);
       cb.addEventListener('change', (function(c){
         return function(e){
+          console.log('[UI] Checkbox change for', c, ':', e.target.checked);
           if (e.target.checked) {
             state.classAllow.add(c);
           } else {
             state.classAllow.delete(c);
           }
-          applyFilters();
+          applyFilters(); // ← Peut être appelé plusieurs fois rapidement
         };
       })(cls));
       
