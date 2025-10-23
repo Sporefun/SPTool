@@ -2,11 +2,18 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>SP Tool (no-modules)</title>
+  <title>SP Tool</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <!-- NOUVEAU: MarkerCluster CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- NOUVEAU: MarkerCluster JS -->
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  
   <style>
     #overlay{position:fixed;inset:0;display:grid;place-items:center;background:rgba(5,8,12,0.92);z-index:9999}
     .home-card{background:#12161c;border:1px solid #1f2630;border-radius:16px;padding:28px;min-width:320px;max-width:520px}
@@ -16,6 +23,26 @@
     .radio-group{display:flex;gap:10px;flex-wrap:wrap}
     .hint{font-size:12px;color:#8a93a1}
     .divider{height:1px;background:#1f2630;margin:12px 0}
+    
+    /* Style des clusters */
+    .marker-cluster-small {
+      background-color: rgba(59, 130, 246, 0.6);
+    }
+    .marker-cluster-small div {
+      background-color: rgba(59, 130, 246, 0.8);
+    }
+    .marker-cluster-medium {
+      background-color: rgba(245, 158, 11, 0.6);
+    }
+    .marker-cluster-medium div {
+      background-color: rgba(245, 158, 11, 0.8);
+    }
+    .marker-cluster-large {
+      background-color: rgba(239, 68, 68, 0.6);
+    }
+    .marker-cluster-large div {
+      background-color: rgba(239, 68, 68, 0.8);
+    }
   </style>
 </head>
 <body>
@@ -76,7 +103,8 @@
     <div class="hint">Chernarus utilisera <code>maps/chernarus.png</code> comme fond.</div>
   </div>
 </section>
-<!-- lecteur -->
+
+<!-- Lecteur timeline -->
 <div id="player">
   <button id="pl_play" type="button">▶</button>
   <button id="pl_pause" type="button">⏸</button>

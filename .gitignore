@@ -1,0 +1,11 @@
+*
+!/.gitattributes
+!/.gitignore
+!/js/
+!/js/**
+!/SPLogs/
+!/SPLogs/**
+!/index.html/
+!/index.html/**
+!/styles.css/
+!/styles.css/**
