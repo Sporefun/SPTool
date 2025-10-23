@@ -1,0 +1,64 @@
+:root{--bg:#0b0e12;--card:#12161c;--muted:#8a93a1;--accent:#3b82f6;--ok:#22c55e;--warn:#f59e0b;--danger:#ef4444;--border:#1f2630}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden}
+body{font-family:ui-sans-serif,system-ui,Segoe UI,Roboto;color:#e5e7eb;background:var(--bg)}
+header{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{font-weight:700}
+.pill{background:#0f1319;border:1px solid var(--border);border-radius:10px;padding:6px 10px;display:flex;gap:8px;align-items:center}
+main{display:grid;grid-template-columns:320px 1fr;height:calc(100% - 58px)}
+/* ----- panneau gauche scrollable uniquement ----- */
+#sidebar{border-right:1px solid var(--border);display:flex;flex-direction:column;min-width:0;overflow:auto;height:100%}
+#filters{padding:10px;border-bottom:1px solid var(--border)}
+#list{flex:1;overflow:visible;padding:10px}
+/* ---------------------------------------------- */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px;margin-bottom:10px;cursor:pointer}
+.title{font-weight:600}
+.sub{color:var(--muted);font-size:12px}
+.badges{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.badge{font-size:12px;padding:3px 8px;border-radius:999px;border:1px solid var(--border);background:#0f1319}
+.hpbar{height:8px;background:#0f172a;border-radius:6px;overflow:hidden;margin-top:8px}
+.hpfill{height:100%;background:var(--ok)}
+.hpfill.warn{background:var(--warn)}
+.hpfill.danger{background:var(--danger)}
+#map{height:100%;width:100%}
+.controls{display:flex;gap:8px;align-items:center}
+input[type=file]{color:#e5e7eb}
+#tabs{display:flex;gap:6px;margin-left:auto}
+.tab{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:#0f1319;cursor:pointer}
+.tab.active{border-color:#2b3340;background:#121826}
+.section{margin-bottom:10px}
+.section h3{margin:0 0 6px 0;font-size:14px;color:#c6cbd6}
+.checkbox{display:flex;align-items:center;gap:8px;margin:4px 0}
+#search{width:100%;padding:8px;border:1px solid var(--border);border-radius:8px;background:#0f1319;color:#e5e7eb}
+.footer{font-size:12px;color:var(--muted);padding:8px;border-top:1px solid var(--border)}
+button{background:#0f1319;border:1px solid var(--border);color:#e5e7eb;padding:8px 10px;border-radius:8px;cursor:pointer}
+button:hover{border-color:#2b3340}
+.small{font-size:12px;color:var(--muted)}
+/* Player au-dessus de la carte, toujours visible */
+#player{
+  position:fixed;
+  left:320px;   /* largeur de la colonne gauche */
+  right:0;
+  bottom:0;
+  background:#12161c;
+  border-top:1px solid var(--border);
+  padding:6px 10px;
+  display:flex;gap:8px;align-items:center;
+  z-index:10000;           /* plus haut que Leaflet */
+  pointer-events:auto;
+  box-shadow:0 -6px 16px rgba(0,0,0,0.35);
+}
+#pl_range{flex:1}
+
+/* S’assure que la carte ne passe pas devant */
+#map{position:relative; z-index:0}
+.leaflet-container{z-index:0 !important}
+
+/* Empêche le contenu de se cacher sous le player (optionnel) */
+main{padding-bottom:48px}
+/* cache le lecteur quand l’overlay d’accueil est ouvert */
+.overlay-open #player{ display:none }
+
+
+
+

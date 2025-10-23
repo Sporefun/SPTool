@@ -1,0 +1,200 @@
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500000, "class": "WoodenCrate", "name": "WoodenCrate", "hp": 0.38, "hp_percent": 38, "pos": {"x": 1447.6, "y": 0.0, "z": 5559.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500001, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.41, "hp_percent": 41, "pos": {"x": 13079.5, "y": 0.0, "z": 3889.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500002, "class": "WoodenCrate", "name": "WoodenCrate", "hp": 0.57, "hp_percent": 57, "pos": {"x": 8919.2, "y": 0.0, "z": 2466.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500003, "class": "CarTent_Brown", "name": "CarTent Brown", "hp": 0.63, "hp_percent": 63, "pos": {"x": 12314.0, "y": 0.0, "z": 13177.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500004, "class": "LargeTent_Green", "name": "LargeTent Green", "hp": 0.45, "hp_percent": 45, "pos": {"x": 8354.1, "y": 0.0, "z": 6838.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500005, "class": "WoodenCrate", "name": "WoodenCrate", "hp": 0.95, "hp_percent": 95, "pos": {"x": 13342.0, "y": 0.0, "z": 5604.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500006, "class": "CarTent_Brown", "name": "CarTent Brown", "hp": 0.37, "hp_percent": 37, "pos": {"x": 6514.3, "y": 0.0, "z": 13540.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500007, "class": "M4A1", "name": "M4A1", "hp": 0.49, "hp_percent": 49, "pos": {"x": 3653.2, "y": 0.0, "z": 414.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500008, "class": "AKM", "name": "AKM", "hp": 0.64, "hp_percent": 64, "pos": {"x": 7835.1, "y": 0.0, "z": 5538.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500009, "class": "BearTrap", "name": "BearTrap", "hp": 0.85, "hp_percent": 85, "pos": {"x": 2824.9, "y": 0.0, "z": 13685.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500010, "class": "Generator", "name": "Generator", "hp": 0.84, "hp_percent": 84, "pos": {"x": 13884.6, "y": 0.0, "z": 11691.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500011, "class": "LargeTent_Green", "name": "LargeTent Green", "hp": 0.58, "hp_percent": 58, "pos": {"x": 5572.4, "y": 0.0, "z": 13157.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500012, "class": "CarTent_Brown", "name": "CarTent Brown", "hp": 0.65, "hp_percent": 65, "pos": {"x": 10963.2, "y": 0.0, "z": 7091.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500013, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.64, "hp_percent": 64, "pos": {"x": 4309.1, "y": 0.0, "z": 7650.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500014, "class": "LargeTent_Green", "name": "LargeTent Green", "hp": 0.93, "hp_percent": 93, "pos": {"x": 10147.3, "y": 0.0, "z": 6988.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500015, "class": "LargeTent_Green", "name": "LargeTent Green", "hp": 0.79, "hp_percent": 79, "pos": {"x": 8713.2, "y": 0.0, "z": 14094.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500016, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.86, "hp_percent": 86, "pos": {"x": 10104.6, "y": 0.0, "z": 14403.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500017, "class": "M4A1", "name": "M4A1", "hp": 0.83, "hp_percent": 83, "pos": {"x": 13428.4, "y": 0.0, "z": 9455.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500018, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.78, "hp_percent": 78, "pos": {"x": 4773.9, "y": 0.0, "z": 14659.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500019, "class": "Generator", "name": "Generator", "hp": 0.71, "hp_percent": 71, "pos": {"x": 8629.0, "y": 0.0, "z": 7792.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500020, "class": "FirstAidKit", "name": "FirstAidKit", "hp": 0.63, "hp_percent": 63, "pos": {"x": 4808.7, "y": 0.0, "z": 3221.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500021, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.87, "hp_percent": 87, "pos": {"x": 9561.0, "y": 0.0, "z": 1200.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500022, "class": "SeaChest", "name": "SeaChest", "hp": 0.81, "hp_percent": 81, "pos": {"x": 13900.8, "y": 0.0, "z": 2970.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500023, "class": "WoodenCrate", "name": "WoodenCrate", "hp": 0.69, "hp_percent": 69, "pos": {"x": 8815.6, "y": 0.0, "z": 796.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500024, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.64, "hp_percent": 64, "pos": {"x": 13410.0, "y": 0.0, "z": 1671.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500025, "class": "Canteen", "name": "Canteen", "hp": 0.91, "hp_percent": 91, "pos": {"x": 3786.1, "y": 0.0, "z": 3261.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500026, "class": "FirstAidKit", "name": "FirstAidKit", "hp": 0.29, "hp_percent": 29, "pos": {"x": 13753.0, "y": 0.0, "z": 11638.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500027, "class": "LargeTent_Green", "name": "LargeTent Green", "hp": 0.31, "hp_percent": 31, "pos": {"x": 2672.9, "y": 0.0, "z": 10316.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500028, "class": "Barrel_Blue", "name": "Barrel Blue", "hp": 0.27, "hp_percent": 27, "pos": {"x": 436.8, "y": 0.0, "z": 11181.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500029, "class": "Canteen", "name": "Canteen", "hp": 0.8, "hp_percent": 80, "pos": {"x": 2000.0, "y": 0.0, "z": 14332.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500030, "class": "Generator", "name": "Generator", "hp": 0.28, "hp_percent": 28, "pos": {"x": 10602.2, "y": 0.0, "z": 5933.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500031, "class": "NVGoggles", "name": "NVGoggles", "hp": 0.51, "hp_percent": 51, "pos": {"x": 2360.7, "y": 0.0, "z": 603.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500032, "class": "FenceKit", "name": "FenceKit", "hp": 0.46, "hp_percent": 46, "pos": {"x": 9629.6, "y": 0.0, "z": 11459.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500033, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.82, "hp_percent": 82, "pos": {"x": 520.2, "y": 0.0, "z": 6896.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500034, "class": "WoodenCrate", "name": "WoodenCrate", "hp": 0.9, "hp_percent": 90, "pos": {"x": 13814.8, "y": 0.0, "z": 11581.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500035, "class": "AKM", "name": "AKM", "hp": 0.75, "hp_percent": 75, "pos": {"x": 7264.6, "y": 0.0, "z": 3491.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500036, "class": "MediumTent_Orange", "name": "MediumTent Orange", "hp": 0.84, "hp_percent": 84, "pos": {"x": 12844.0, "y": 0.0, "z": 419.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500037, "class": "AKM", "name": "AKM", "hp": 0.62, "hp_percent": 62, "pos": {"x": 7959.0, "y": 0.0, "z": 11969.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500038, "class": "MediumTent_Orange", "name": "MediumTent Orange", "hp": 0.44, "hp_percent": 44, "pos": {"x": 2244.8, "y": 0.0, "z": 14695.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500039, "class": "FenceKit", "name": "FenceKit", "hp": 0.77, "hp_percent": 77, "pos": {"x": 14862.6, "y": 0.0, "z": 10019.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500040, "class": "AKM", "name": "AKM", "hp": 0.35, "hp_percent": 35, "pos": {"x": 10282.8, "y": 0.0, "z": 3910.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500041, "class": "M4A1", "name": "M4A1", "hp": 0.63, "hp_percent": 63, "pos": {"x": 1513.0, "y": 0.0, "z": 9741.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500042, "class": "WoodenCrate", "name": "WoodenCrate", "hp": 0.58, "hp_percent": 58, "pos": {"x": 15226.5, "y": 0.0, "z": 3597.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500043, "class": "Canteen", "name": "Canteen", "hp": 0.84, "hp_percent": 84, "pos": {"x": 1277.3, "y": 0.0, "z": 3532.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500044, "class": "FenceKit", "name": "FenceKit", "hp": 0.57, "hp_percent": 57, "pos": {"x": 10876.9, "y": 0.0, "z": 3965.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500045, "class": "Generator", "name": "Generator", "hp": 0.54, "hp_percent": 54, "pos": {"x": 11505.3, "y": 0.0, "z": 2356.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500046, "class": "M4A1", "name": "M4A1", "hp": 0.43, "hp_percent": 43, "pos": {"x": 1746.5, "y": 0.0, "z": 11094.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500047, "class": "Barrel_Green", "name": "Barrel Green", "hp": 0.33, "hp_percent": 33, "pos": {"x": 352.2, "y": 0.0, "z": 11503.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500048, "class": "SeaChest", "name": "SeaChest", "hp": 0.48, "hp_percent": 48, "pos": {"x": 7996.4, "y": 0.0, "z": 7136.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500049, "class": "BarbedWire", "name": "BarbedWire", "hp": 0.82, "hp_percent": 82, "pos": {"x": 5848.8, "y": 0.0, "z": 10498.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500050, "class": "HuntingKnife", "name": "HuntingKnife", "hp": 0.63, "hp_percent": 63, "pos": {"x": 11173.5, "y": 0.0, "z": 6668.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500051, "class": "WatchtowerKit", "name": "WatchtowerKit", "hp": 0.95, "hp_percent": 95, "pos": {"x": 9073.9, "y": 0.0, "z": 13500.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500052, "class": "WatchtowerKit", "name": "WatchtowerKit", "hp": 0.85, "hp_percent": 85, "pos": {"x": 2815.5, "y": 0.0, "z": 1481.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500053, "class": "LargeTent_Green", "name": "LargeTent Green", "hp": 0.34, "hp_percent": 34, "pos": {"x": 347.3, "y": 0.0, "z": 14709.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500054, "class": "LargeTent_Green", "name": "LargeTent Green", "hp": 0.53, "hp_percent": 53, "pos": {"x": 4469.0, "y": 0.0, "z": 15058.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500055, "class": "SeaChest", "name": "SeaChest", "hp": 0.33, "hp_percent": 33, "pos": {"x": 13392.5, "y": 0.0, "z": 6341.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500056, "class": "HuntingKnife", "name": "HuntingKnife", "hp": 0.26, "hp_percent": 26, "pos": {"x": 12877.7, "y": 0.0, "z": 10313.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500057, "class": "AmmoBox_545x39_20Rnd", "name": "AmmoBox 545x39 20Rnd", "hp": 0.6, "hp_percent": 60, "pos": {"x": 965.5, "y": 0.0, "z": 9775.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500058, "class": "WatchtowerKit", "name": "WatchtowerKit", "hp": 0.27, "hp_percent": 27, "pos": {"x": 9412.9, "y": 0.0, "z": 131.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500059, "class": "Battery9V", "name": "Battery9V", "hp": 0.82, "hp_percent": 82, "pos": {"x": 14322.2, "y": 0.0, "z": 1218.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500060, "class": "HuntingKnife", "name": "HuntingKnife", "hp": 0.79, "hp_percent": 79, "pos": {"x": 1816.6, "y": 0.0, "z": 5748.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500061, "class": "AKM", "name": "AKM", "hp": 0.34, "hp_percent": 34, "pos": {"x": 11549.6, "y": 0.0, "z": 6078.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500062, "class": "Barrel_Green", "name": "Barrel Green", "hp": 0.5, "hp_percent": 50, "pos": {"x": 1926.3, "y": 0.0, "z": 9458.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500063, "class": "CarTent_Brown", "name": "CarTent Brown", "hp": 0.27, "hp_percent": 27, "pos": {"x": 14694.5, "y": 0.0, "z": 10619.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500064, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.78, "hp_percent": 78, "pos": {"x": 7227.9, "y": 0.0, "z": 708.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500065, "class": "Battery9V", "name": "Battery9V", "hp": 0.85, "hp_percent": 85, "pos": {"x": 5506.7, "y": 0.0, "z": 7024.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500066, "class": "Canteen", "name": "Canteen", "hp": 0.79, "hp_percent": 79, "pos": {"x": 7438.9, "y": 0.0, "z": 13262.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500067, "class": "FirstAidKit", "name": "FirstAidKit", "hp": 0.47, "hp_percent": 47, "pos": {"x": 14273.1, "y": 0.0, "z": 12807.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500068, "class": "NVGoggles", "name": "NVGoggles", "hp": 0.66, "hp_percent": 66, "pos": {"x": 2436.7, "y": 0.0, "z": 9153.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500069, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.8, "hp_percent": 80, "pos": {"x": 10719.9, "y": 0.0, "z": 1336.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500070, "class": "WatchtowerKit", "name": "WatchtowerKit", "hp": 1.0, "hp_percent": 100, "pos": {"x": 1514.2, "y": 0.0, "z": 5483.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500071, "class": "AKM", "name": "AKM", "hp": 0.85, "hp_percent": 85, "pos": {"x": 12354.2, "y": 0.0, "z": 13756.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500072, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.35, "hp_percent": 35, "pos": {"x": 15136.6, "y": 0.0, "z": 9939.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500073, "class": "Battery9V", "name": "Battery9V", "hp": 0.91, "hp_percent": 91, "pos": {"x": 6010.5, "y": 0.0, "z": 10860.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500074, "class": "MediumTent_Orange", "name": "MediumTent Orange", "hp": 0.33, "hp_percent": 33, "pos": {"x": 6746.8, "y": 0.0, "z": 8046.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500075, "class": "BearTrap", "name": "BearTrap", "hp": 0.57, "hp_percent": 57, "pos": {"x": 15106.8, "y": 0.0, "z": 14834.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500076, "class": "MediumTent_Orange", "name": "MediumTent Orange", "hp": 0.44, "hp_percent": 44, "pos": {"x": 7931.8, "y": 0.0, "z": 10966.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500077, "class": "M4A1", "name": "M4A1", "hp": 0.55, "hp_percent": 55, "pos": {"x": 7084.0, "y": 0.0, "z": 10781.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500078, "class": "LargeTent_Green", "name": "LargeTent Green", "hp": 0.36, "hp_percent": 36, "pos": {"x": 11995.8, "y": 0.0, "z": 8800.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500079, "class": "AmmoBox_545x39_20Rnd", "name": "AmmoBox 545x39 20Rnd", "hp": 0.54, "hp_percent": 54, "pos": {"x": 11019.9, "y": 0.0, "z": 12406.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500080, "class": "M4A1", "name": "M4A1", "hp": 0.46, "hp_percent": 46, "pos": {"x": 6045.0, "y": 0.0, "z": 867.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500081, "class": "Canteen", "name": "Canteen", "hp": 0.78, "hp_percent": 78, "pos": {"x": 10891.6, "y": 0.0, "z": 14343.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500082, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.78, "hp_percent": 78, "pos": {"x": 5545.2, "y": 0.0, "z": 8406.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500083, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.79, "hp_percent": 79, "pos": {"x": 1292.4, "y": 0.0, "z": 12558.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500084, "class": "BearTrap", "name": "BearTrap", "hp": 0.75, "hp_percent": 75, "pos": {"x": 9530.3, "y": 0.0, "z": 6195.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500085, "class": "BarbedWire", "name": "BarbedWire", "hp": 0.64, "hp_percent": 64, "pos": {"x": 14012.4, "y": 0.0, "z": 4825.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500086, "class": "AmmoBox_545x39_20Rnd", "name": "AmmoBox 545x39 20Rnd", "hp": 0.26, "hp_percent": 26, "pos": {"x": 9970.3, "y": 0.0, "z": 12503.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500087, "class": "HuntingKnife", "name": "HuntingKnife", "hp": 0.93, "hp_percent": 93, "pos": {"x": 11181.6, "y": 0.0, "z": 9304.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500088, "class": "Barrel_Green", "name": "Barrel Green", "hp": 0.85, "hp_percent": 85, "pos": {"x": 6001.2, "y": 0.0, "z": 8560.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500089, "class": "Canteen", "name": "Canteen", "hp": 0.39, "hp_percent": 39, "pos": {"x": 11407.2, "y": 0.0, "z": 8995.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500090, "class": "FenceKit", "name": "FenceKit", "hp": 0.58, "hp_percent": 58, "pos": {"x": 2153.9, "y": 0.0, "z": 9394.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500091, "class": "Canteen", "name": "Canteen", "hp": 0.78, "hp_percent": 78, "pos": {"x": 7885.1, "y": 0.0, "z": 2698.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500092, "class": "Barrel_Blue", "name": "Barrel Blue", "hp": 0.65, "hp_percent": 65, "pos": {"x": 5394.6, "y": 0.0, "z": 13870.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500093, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.61, "hp_percent": 61, "pos": {"x": 10097.2, "y": 0.0, "z": 11566.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500094, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.91, "hp_percent": 91, "pos": {"x": 14123.5, "y": 0.0, "z": 7059.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500095, "class": "AmmoBox_545x39_20Rnd", "name": "AmmoBox 545x39 20Rnd", "hp": 0.82, "hp_percent": 82, "pos": {"x": 470.1, "y": 0.0, "z": 1267.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500096, "class": "M4A1", "name": "M4A1", "hp": 1.0, "hp_percent": 100, "pos": {"x": 11641.9, "y": 0.0, "z": 14371.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500097, "class": "Canteen", "name": "Canteen", "hp": 0.9, "hp_percent": 90, "pos": {"x": 10350.4, "y": 0.0, "z": 12066.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500098, "class": "AKM", "name": "AKM", "hp": 0.99, "hp_percent": 99, "pos": {"x": 875.3, "y": 0.0, "z": 7672.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500099, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.67, "hp_percent": 67, "pos": {"x": 4548.9, "y": 0.0, "z": 208.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500100, "class": "SeaChest", "name": "SeaChest", "hp": 0.54, "hp_percent": 54, "pos": {"x": 5642.2, "y": 0.0, "z": 8259.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500101, "class": "AmmoBox_545x39_20Rnd", "name": "AmmoBox 545x39 20Rnd", "hp": 0.62, "hp_percent": 62, "pos": {"x": 3169.4, "y": 0.0, "z": 10372.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500102, "class": "AKM", "name": "AKM", "hp": 0.94, "hp_percent": 94, "pos": {"x": 7432.6, "y": 0.0, "z": 8268.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500103, "class": "Barrel_Blue", "name": "Barrel Blue", "hp": 0.5, "hp_percent": 50, "pos": {"x": 3986.8, "y": 0.0, "z": 4827.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500104, "class": "Battery9V", "name": "Battery9V", "hp": 0.88, "hp_percent": 88, "pos": {"x": 10021.0, "y": 0.0, "z": 6046.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500105, "class": "Barrel_Blue", "name": "Barrel Blue", "hp": 0.7, "hp_percent": 70, "pos": {"x": 7809.1, "y": 0.0, "z": 3263.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500106, "class": "AKM", "name": "AKM", "hp": 0.48, "hp_percent": 48, "pos": {"x": 12225.4, "y": 0.0, "z": 9646.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500107, "class": "NVGoggles", "name": "NVGoggles", "hp": 0.64, "hp_percent": 64, "pos": {"x": 14540.6, "y": 0.0, "z": 8615.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500108, "class": "WoodenCrate", "name": "WoodenCrate", "hp": 0.86, "hp_percent": 86, "pos": {"x": 14665.3, "y": 0.0, "z": 1758.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500109, "class": "CarTent_Brown", "name": "CarTent Brown", "hp": 0.52, "hp_percent": 52, "pos": {"x": 13121.7, "y": 0.0, "z": 3311.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500110, "class": "MediumTent_Orange", "name": "MediumTent Orange", "hp": 0.58, "hp_percent": 58, "pos": {"x": 7029.6, "y": 0.0, "z": 2590.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500111, "class": "Battery9V", "name": "Battery9V", "hp": 0.79, "hp_percent": 79, "pos": {"x": 7085.8, "y": 0.0, "z": 2092.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500112, "class": "BarbedWire", "name": "BarbedWire", "hp": 0.37, "hp_percent": 37, "pos": {"x": 3344.7, "y": 0.0, "z": 4216.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500113, "class": "NVGoggles", "name": "NVGoggles", "hp": 0.88, "hp_percent": 88, "pos": {"x": 7205.3, "y": 0.0, "z": 11530.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500114, "class": "M4A1", "name": "M4A1", "hp": 0.42, "hp_percent": 42, "pos": {"x": 5484.1, "y": 0.0, "z": 12183.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500115, "class": "BearTrap", "name": "BearTrap", "hp": 0.87, "hp_percent": 87, "pos": {"x": 9708.2, "y": 0.0, "z": 6158.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500116, "class": "MediumTent_Orange", "name": "MediumTent Orange", "hp": 0.7, "hp_percent": 70, "pos": {"x": 4334.2, "y": 0.0, "z": 11038.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500117, "class": "WatchtowerKit", "name": "WatchtowerKit", "hp": 0.81, "hp_percent": 81, "pos": {"x": 10579.1, "y": 0.0, "z": 14528.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500118, "class": "BarbedWire", "name": "BarbedWire", "hp": 0.47, "hp_percent": 47, "pos": {"x": 11548.9, "y": 0.0, "z": 14990.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500119, "class": "FenceKit", "name": "FenceKit", "hp": 0.48, "hp_percent": 48, "pos": {"x": 9770.5, "y": 0.0, "z": 1158.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500120, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.52, "hp_percent": 52, "pos": {"x": 2717.1, "y": 0.0, "z": 14664.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500121, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.49, "hp_percent": 49, "pos": {"x": 1388.3, "y": 0.0, "z": 14142.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500122, "class": "CarTent_Brown", "name": "CarTent Brown", "hp": 0.51, "hp_percent": 51, "pos": {"x": 1988.9, "y": 0.0, "z": 477.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500123, "class": "LargeTent_Green", "name": "LargeTent Green", "hp": 0.8, "hp_percent": 80, "pos": {"x": 1225.6, "y": 0.0, "z": 13454.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500124, "class": "BarbedWire", "name": "BarbedWire", "hp": 0.43, "hp_percent": 43, "pos": {"x": 6709.9, "y": 0.0, "z": 8331.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500125, "class": "FenceKit", "name": "FenceKit", "hp": 0.73, "hp_percent": 73, "pos": {"x": 6000.0, "y": 0.0, "z": 4393.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500126, "class": "AKM", "name": "AKM", "hp": 0.62, "hp_percent": 62, "pos": {"x": 5540.9, "y": 0.0, "z": 3134.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500127, "class": "AKM", "name": "AKM", "hp": 0.36, "hp_percent": 36, "pos": {"x": 12012.0, "y": 0.0, "z": 5106.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500128, "class": "LargeTent_Green", "name": "LargeTent Green", "hp": 0.43, "hp_percent": 43, "pos": {"x": 3867.7, "y": 0.0, "z": 5279.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500129, "class": "NVGoggles", "name": "NVGoggles", "hp": 0.96, "hp_percent": 96, "pos": {"x": 11159.8, "y": 0.0, "z": 765.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500130, "class": "BarbedWire", "name": "BarbedWire", "hp": 0.36, "hp_percent": 36, "pos": {"x": 11766.9, "y": 0.0, "z": 991.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500131, "class": "Barrel_Blue", "name": "Barrel Blue", "hp": 0.35, "hp_percent": 35, "pos": {"x": 6608.4, "y": 0.0, "z": 11934.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500132, "class": "Generator", "name": "Generator", "hp": 0.74, "hp_percent": 74, "pos": {"x": 8851.8, "y": 0.0, "z": 1826.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500133, "class": "FenceKit", "name": "FenceKit", "hp": 0.29, "hp_percent": 29, "pos": {"x": 14659.7, "y": 0.0, "z": 3525.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500134, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.66, "hp_percent": 66, "pos": {"x": 7525.0, "y": 0.0, "z": 13347.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500135, "class": "FenceKit", "name": "FenceKit", "hp": 0.65, "hp_percent": 65, "pos": {"x": 9168.4, "y": 0.0, "z": 9022.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500136, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.59, "hp_percent": 59, "pos": {"x": 15141.1, "y": 0.0, "z": 12880.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500137, "class": "FirstAidKit", "name": "FirstAidKit", "hp": 0.91, "hp_percent": 91, "pos": {"x": 5940.3, "y": 0.0, "z": 6957.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500138, "class": "AmmoBox_545x39_20Rnd", "name": "AmmoBox 545x39 20Rnd", "hp": 0.95, "hp_percent": 95, "pos": {"x": 15237.6, "y": 0.0, "z": 2006.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500139, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.54, "hp_percent": 54, "pos": {"x": 7680.1, "y": 0.0, "z": 2721.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500140, "class": "AmmoBox_545x39_20Rnd", "name": "AmmoBox 545x39 20Rnd", "hp": 0.33, "hp_percent": 33, "pos": {"x": 12226.4, "y": 0.0, "z": 185.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500141, "class": "LargeTent_Green", "name": "LargeTent Green", "hp": 0.57, "hp_percent": 57, "pos": {"x": 3416.2, "y": 0.0, "z": 430.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500142, "class": "Barrel_Blue", "name": "Barrel Blue", "hp": 0.6, "hp_percent": 60, "pos": {"x": 5177.5, "y": 0.0, "z": 12559.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500143, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.67, "hp_percent": 67, "pos": {"x": 3735.7, "y": 0.0, "z": 7397.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500144, "class": "AKM", "name": "AKM", "hp": 0.29, "hp_percent": 29, "pos": {"x": 10667.2, "y": 0.0, "z": 8323.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500145, "class": "BearTrap", "name": "BearTrap", "hp": 0.64, "hp_percent": 64, "pos": {"x": 14067.4, "y": 0.0, "z": 12594.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500146, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.53, "hp_percent": 53, "pos": {"x": 8114.5, "y": 0.0, "z": 3689.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500147, "class": "SeaChest", "name": "SeaChest", "hp": 0.33, "hp_percent": 33, "pos": {"x": 2060.7, "y": 0.0, "z": 1828.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500148, "class": "HuntingKnife", "name": "HuntingKnife", "hp": 0.72, "hp_percent": 72, "pos": {"x": 12226.6, "y": 0.0, "z": 9450.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500149, "class": "MediumTent_Orange", "name": "MediumTent Orange", "hp": 0.93, "hp_percent": 93, "pos": {"x": 9552.2, "y": 0.0, "z": 13152.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500150, "class": "Generator", "name": "Generator", "hp": 0.37, "hp_percent": 37, "pos": {"x": 7788.2, "y": 0.0, "z": 14043.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500151, "class": "Barrel_Green", "name": "Barrel Green", "hp": 0.97, "hp_percent": 97, "pos": {"x": 12766.4, "y": 0.0, "z": 2360.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500152, "class": "M4A1", "name": "M4A1", "hp": 0.57, "hp_percent": 57, "pos": {"x": 5807.6, "y": 0.0, "z": 4588.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500153, "class": "FirstAidKit", "name": "FirstAidKit", "hp": 0.47, "hp_percent": 47, "pos": {"x": 2039.9, "y": 0.0, "z": 4836.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500154, "class": "Barrel_Green", "name": "Barrel Green", "hp": 0.46, "hp_percent": 46, "pos": {"x": 8633.2, "y": 0.0, "z": 7264.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500155, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.78, "hp_percent": 78, "pos": {"x": 15109.9, "y": 0.0, "z": 3546.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500156, "class": "BearTrap", "name": "BearTrap", "hp": 0.66, "hp_percent": 66, "pos": {"x": 10094.6, "y": 0.0, "z": 517.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500157, "class": "HuntingKnife", "name": "HuntingKnife", "hp": 0.28, "hp_percent": 28, "pos": {"x": 3290.3, "y": 0.0, "z": 6023.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500158, "class": "AKM", "name": "AKM", "hp": 0.78, "hp_percent": 78, "pos": {"x": 9594.1, "y": 0.0, "z": 11376.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500159, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.9, "hp_percent": 90, "pos": {"x": 8285.5, "y": 0.0, "z": 11289.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500160, "class": "NVGoggles", "name": "NVGoggles", "hp": 0.28, "hp_percent": 28, "pos": {"x": 12799.4, "y": 0.0, "z": 9177.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500161, "class": "HuntingKnife", "name": "HuntingKnife", "hp": 0.77, "hp_percent": 77, "pos": {"x": 15266.4, "y": 0.0, "z": 2192.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500162, "class": "M4A1", "name": "M4A1", "hp": 0.77, "hp_percent": 77, "pos": {"x": 11691.5, "y": 0.0, "z": 1458.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500163, "class": "AmmoBox_545x39_20Rnd", "name": "AmmoBox 545x39 20Rnd", "hp": 0.37, "hp_percent": 37, "pos": {"x": 9657.4, "y": 0.0, "z": 14743.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500164, "class": "MediumTent_Orange", "name": "MediumTent Orange", "hp": 0.93, "hp_percent": 93, "pos": {"x": 10746.3, "y": 0.0, "z": 4282.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500165, "class": "WatchtowerKit", "name": "WatchtowerKit", "hp": 0.75, "hp_percent": 75, "pos": {"x": 1080.5, "y": 0.0, "z": 13754.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500166, "class": "WoodenCrate", "name": "WoodenCrate", "hp": 0.34, "hp_percent": 34, "pos": {"x": 6998.8, "y": 0.0, "z": 10110.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500167, "class": "Canteen", "name": "Canteen", "hp": 0.56, "hp_percent": 56, "pos": {"x": 14459.7, "y": 0.0, "z": 290.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500168, "class": "Canteen", "name": "Canteen", "hp": 0.64, "hp_percent": 64, "pos": {"x": 8260.1, "y": 0.0, "z": 6038.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500169, "class": "HuntingKnife", "name": "HuntingKnife", "hp": 0.38, "hp_percent": 38, "pos": {"x": 6607.5, "y": 0.0, "z": 2014.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500170, "class": "AmmoBox_545x39_20Rnd", "name": "AmmoBox 545x39 20Rnd", "hp": 0.54, "hp_percent": 54, "pos": {"x": 13348.2, "y": 0.0, "z": 14859.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500171, "class": "FenceKit", "name": "FenceKit", "hp": 0.61, "hp_percent": 61, "pos": {"x": 3934.9, "y": 0.0, "z": 2962.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500172, "class": "HuntingKnife", "name": "HuntingKnife", "hp": 0.5, "hp_percent": 50, "pos": {"x": 11575.9, "y": 0.0, "z": 13021.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500173, "class": "Barrel_Blue", "name": "Barrel Blue", "hp": 0.9, "hp_percent": 90, "pos": {"x": 2650.7, "y": 0.0, "z": 9283.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500174, "class": "NVGoggles", "name": "NVGoggles", "hp": 0.68, "hp_percent": 68, "pos": {"x": 11777.9, "y": 0.0, "z": 10030.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500175, "class": "AKM", "name": "AKM", "hp": 0.41, "hp_percent": 41, "pos": {"x": 10459.6, "y": 0.0, "z": 4747.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500176, "class": "Battery9V", "name": "Battery9V", "hp": 0.27, "hp_percent": 27, "pos": {"x": 1547.1, "y": 0.0, "z": 12089.4}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500177, "class": "MediumTent_Orange", "name": "MediumTent Orange", "hp": 0.84, "hp_percent": 84, "pos": {"x": 943.7, "y": 0.0, "z": 8189.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500178, "class": "CombinationLock", "name": "CombinationLock", "hp": 0.56, "hp_percent": 56, "pos": {"x": 5281.7, "y": 0.0, "z": 6773.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500179, "class": "SeaChest", "name": "SeaChest", "hp": 0.41, "hp_percent": 41, "pos": {"x": 4362.9, "y": 0.0, "z": 8812.8}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500180, "class": "M4A1", "name": "M4A1", "hp": 0.3, "hp_percent": 30, "pos": {"x": 9310.8, "y": 0.0, "z": 5783.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500181, "class": "WatchtowerKit", "name": "WatchtowerKit", "hp": 0.31, "hp_percent": 31, "pos": {"x": 6874.4, "y": 0.0, "z": 4310.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500182, "class": "AmmoBox_556x45_20Rnd", "name": "AmmoBox 556x45 20Rnd", "hp": 0.36, "hp_percent": 36, "pos": {"x": 12270.0, "y": 0.0, "z": 14026.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500183, "class": "Battery9V", "name": "Battery9V", "hp": 0.42, "hp_percent": 42, "pos": {"x": 13005.9, "y": 0.0, "z": 13116.3}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500184, "class": "FenceKit", "name": "FenceKit", "hp": 0.69, "hp_percent": 69, "pos": {"x": 10787.6, "y": 0.0, "z": 13391.9}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500185, "class": "CarTent_Brown", "name": "CarTent Brown", "hp": 0.41, "hp_percent": 41, "pos": {"x": 8046.0, "y": 0.0, "z": 3631.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500186, "class": "WoodenCrate", "name": "WoodenCrate", "hp": 0.96, "hp_percent": 96, "pos": {"x": 4040.1, "y": 0.0, "z": 3856.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500187, "class": "CarTent_Brown", "name": "CarTent Brown", "hp": 0.59, "hp_percent": 59, "pos": {"x": 12631.7, "y": 0.0, "z": 1872.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500188, "class": "CarTent_Brown", "name": "CarTent Brown", "hp": 0.41, "hp_percent": 41, "pos": {"x": 7294.9, "y": 0.0, "z": 5847.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500189, "class": "NVGoggles", "name": "NVGoggles", "hp": 0.91, "hp_percent": 91, "pos": {"x": 888.7, "y": 0.0, "z": 8059.7}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500190, "class": "FenceKit", "name": "FenceKit", "hp": 0.29, "hp_percent": 29, "pos": {"x": 14480.5, "y": 0.0, "z": 10343.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500191, "class": "FirstAidKit", "name": "FirstAidKit", "hp": 0.33, "hp_percent": 33, "pos": {"x": 6177.3, "y": 0.0, "z": 7904.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500192, "class": "Generator", "name": "Generator", "hp": 0.62, "hp_percent": 62, "pos": {"x": 5562.2, "y": 0.0, "z": 14425.6}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500193, "class": "Barrel_Blue", "name": "Barrel Blue", "hp": 0.42, "hp_percent": 42, "pos": {"x": 10805.6, "y": 0.0, "z": 11259.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500194, "class": "SeaChest", "name": "SeaChest", "hp": 0.74, "hp_percent": 74, "pos": {"x": 498.2, "y": 0.0, "z": 687.1}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500195, "class": "HuntingKnife", "name": "HuntingKnife", "hp": 0.71, "hp_percent": 71, "pos": {"x": 4958.8, "y": 0.0, "z": 8255.2}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500196, "class": "BarbedWire", "name": "BarbedWire", "hp": 0.73, "hp_percent": 73, "pos": {"x": 4556.5, "y": 0.0, "z": 11678.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500197, "class": "BearTrap", "name": "BearTrap", "hp": 0.58, "hp_percent": 58, "pos": {"x": 1371.5, "y": 0.0, "z": 10274.5}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500198, "class": "AKM", "name": "AKM", "hp": 0.45, "hp_percent": 45, "pos": {"x": 567.2, "y": 0.0, "z": 7855.0}}
+{"type": "item", "world": "chernarusplus", "worldSize": 15360, "id": 500199, "class": "WoodenCrate", "name": "WoodenCrate", "hp": 0.51, "hp_percent": 51, "pos": {"x": 14461.6, "y": 0.0, "z": 5470.0}}

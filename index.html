@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>SP Tool (no-modules)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    #overlay{position:fixed;inset:0;display:grid;place-items:center;background:rgba(5,8,12,0.92);z-index:9999}
+    .home-card{background:#12161c;border:1px solid #1f2630;border-radius:16px;padding:28px;min-width:320px;max-width:520px}
+    .home-card h1{margin:0 0 16px 0;font-size:20px}
+    .home-row{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+    .home-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+    .radio-group{display:flex;gap:10px;flex-wrap:wrap}
+    .hint{font-size:12px;color:#8a93a1}
+    .divider{height:1px;background:#1f2630;margin:12px 0}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">SP Tool</div>
+  <div class="pill controls">
+    <label class="small">Charger .ljson<input id="file" type="file" accept=".ljson,.jsonl,text/plain" multiple></label>
+    <label class="small">Fond de carte<input id="bgimg" type="file" accept="image/*"></label>
+    <button id="fit" type="button">Centrer</button>
+    <button id="clear" type="button">Vider</button>
+    <div class="spacer"></div>
+    <div id="meta" class="small">Aucun fichier</div>
+  </div>
+  <div id="tabs">
+    <div class="tab active" data-mod="loot">Loot</div>
+  </div>
+</header>
+
+<main>
+  <aside id="sidebar">
+    <div id="filters">
+      <div class="section">
+        <input id="search" placeholder="Rechercher: nom, classe, id">
+      </div>
+      <div class="section" id="loot-filters"></div>
+      <div class="section">
+        <button id="selectAll" type="button">Tout cocher</button>
+        <button id="unselectAll" type="button">Tout décocher</button>
+      </div>
+    </div>
+    <div id="list"></div>
+    <div class="footer" id="stats"></div>
+  </aside>
+  <section id="map"></section>
+</main>
+
+<section id="overlay">
+  <div class="home-card">
+    <h1>SP Tool</h1>
+    <div class="home-row">
+      <label class="hint">Sélectionner la carte</label>
+      <div class="radio-group">
+        <label><input type="radio" name="mapsel" value="chernarus" checked> Chernarus</label>
+        <label><input type="radio" name="mapsel" value="livonia"> Livonia (placeholder)</label>
+        <label><input type="radio" name="mapsel" value="namalsk"> Namalsk (placeholder)</label>
+        <label><input type="radio" name="mapsel" value="sakhal"> Sakhal (placeholder)</label>
+      </div>
+    </div>
+    <div class="home-row">
+      <label class="hint">Charger le(s) fichier(s) .ljson</label>
+      <input id="homeFile" type="file" accept=".ljson,.jsonl,text/plain" multiple>
+    </div>
+    <div class="divider"></div>
+    <div class="home-actions">
+      <button id="homeStart" type="button">Ouvrir</button>
+    </div>
+    <div class="hint">Chernarus utilisera <code>maps/chernarus.png</code> comme fond.</div>
+  </div>
+</section>
+<!-- lecteur -->
+<div id="player">
+  <button id="pl_play" type="button">▶</button>
+  <button id="pl_pause" type="button">⏸</button>
+  <input id="pl_range" type="range" min="0" max="0" step="1" value="0">
+  <span id="pl_ts" class="small">—</span>
+  <select id="pl_speed">
+    <option value="0.5">0.5×</option>
+    <option value="1" selected>1×</option>
+    <option value="2">2×</option>
+    <option value="5">5×</option>
+  </select>
+</div>
+
+<script src="js/app_nomodule.js"></script>
+</body>
+</html>
