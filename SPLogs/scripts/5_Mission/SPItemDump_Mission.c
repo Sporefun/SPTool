@@ -11,6 +11,9 @@ static float SP_MOVE_EPS         = 0.25;
 static int   SP_HP_EPS_PCT       = 1;
 static int   SP_LOG_REMOVALS     = 1;
 
+// NOUVEAU: snapshots complets périodiques
+static int   SP_FULL_SNAPSHOT_EVERY_N = 10; // Snapshot complet toutes les 10 frames
+
 // ---------------- Time (UTC) ----------------
 static void SP_UTC(out int y, out int m, out int d, out int h, out int mi, out int s)
 {
@@ -20,22 +23,40 @@ static void SP_UTC(out int y, out int m, out int d, out int h, out int mi, out i
 static string SP_Two(int v)
 {
 	string r;
-	if (v < 10) r = "0" + v.ToString();
-	else r = v.ToString();
+	if (v < 10)
+	{
+		r = "0" + v.ToString();
+	}
+	else
+	{
+		r = v.ToString();
+	}
 	return r;
 }
 static string SP_TimestampISO_UTC()
 {
-	int y; int m; int d; int h; int mi; int s; SP_UTC(y,m,d,h,mi,s);
+	int y;
+	int m;
+	int d;
+	int h;
+	int mi;
+	int s;
+	SP_UTC(y,m,d,h,mi,s);
 	return y.ToString()+"-"+SP_Two(m)+"-"+SP_Two(d)+"T"+SP_Two(h)+":"+SP_Two(mi)+":"+SP_Two(s);
 }
 static string SP_HourKeyUTC()
 {
-	int y; int m; int d; int h; int mi; int s; SP_UTC(y,m,d,h,mi,s);
+	int y;
+	int m;
+	int d;
+	int h;
+	int mi;
+	int s;
+	SP_UTC(y,m,d,h,mi,s);
 	return y.ToString()+"-"+SP_Two(m)+"-"+SP_Two(d)+"_"+SP_Two(h);
 }
 static string SP_HourFileUTC()   { return "$profile:SPModding\\logs\\"+SP_HourKeyUTC()+".ljson"; }
-static string SP_HourIndexFile() { return "$profile:SPModding\\state\\hour_"+SP_HourKeyUTC()+".spcache"; } // id|class|hp|qty|x|y|z|holderClass|holderId
+static string SP_HourIndexFile() { return "$profile:SPModding\\state\\hour_"+SP_HourKeyUTC()+".spcache"; }
 
 // ---------------- Utils ----------------
 static float SP_WorldSizeFromName(string w)
@@ -47,12 +68,23 @@ static float SP_WorldSizeFromName(string w)
 	if (w.Contains("namalsk")) return 10240.0;
 	return 15360.0;
 }
-static string SP_SafeText(string s){ if (s == string.Empty) return s; s.Replace("\"","'"); s.Replace("\n"," "); s.Replace("\r"," "); return s; }
+static string SP_SafeText(string s)
+{
+	if (s == string.Empty) return s;
+	s.Replace("\"","'");
+	s.Replace("\n"," ");
+	s.Replace("\r"," ");
+	return s;
+}
 static string SP_GetDisplayNameSafe(EntityAI eai)
 {
 	string n = "";
 	ItemBase ib = ItemBase.Cast(eai);
-	if (ib){ n = ib.GetDisplayName(); if (n != string.Empty) return SP_SafeText(n); }
+	if (ib)
+	{
+		n = ib.GetDisplayName();
+		if (n != string.Empty) return SP_SafeText(n);
+	}
 	string path = "CfgVehicles " + eai.GetType() + " displayName";
 	if (GetGame().ConfigIsExisting(path)) GetGame().ConfigGetText(path, n);
 	if (n == string.Empty) n = eai.GetType();
@@ -60,18 +92,25 @@ static string SP_GetDisplayNameSafe(EntityAI eai)
 }
 static void SP_EnsureDirs()
 {
-	string p0 = "$profile:SPModding"; if (!FileExist(p0)) MakeDirectory(p0);
-	string p1 = "$profile:SPModding\\logs"; if (!FileExist(p1)) MakeDirectory(p1);
-	string p2 = "$profile:SPModding\\state"; if (!FileExist(p2)) MakeDirectory(p2);
+	string p0 = "$profile:SPModding";
+	if (!FileExist(p0)) MakeDirectory(p0);
+	string p1 = "$profile:SPModding\\logs";
+	if (!FileExist(p1)) MakeDirectory(p1);
+	string p2 = "$profile:SPModding\\state";
+	if (!FileExist(p2)) MakeDirectory(p2);
 }
 
 // ---------------- IDs ----------------
 static bool SP_GetPersistentCanon(EntityAI e, out string canon, out int pid1, out int pid2, out int pid3, out int pid4)
 {
-	canon = ""; pid1=0; pid2=0; pid3=0; pid4=0;
+	canon = "";
+	pid1 = 0;
+	pid2 = 0;
+	pid3 = 0;
+	pid4 = 0;
 	if (!e) return false;
 	e.GetPersistentID(pid1, pid2, pid3, pid4);
-	if (pid1==0 && pid2==0 && pid3==0 && pid4==0) return false; // pas d'ID persistant → on ignore
+	if (pid1 == 0 && pid2 == 0 && pid3 == 0 && pid4 == 0) return false;
 	canon = "p:"+pid1.ToString()+":"+pid2.ToString()+":"+pid3.ToString()+":"+pid4.ToString();
 	return true;
 }
@@ -79,24 +118,42 @@ static bool SP_GetPersistentCanon(EntityAI e, out string canon, out int pid1, ou
 // ---------------- Holder / qty ----------------
 static void SP_GetHolderInfo(ItemBase ib, out string holderClass, out string holderId)
 {
-	holderClass = "world"; holderId = "";
+	holderClass = "world";
+	holderId = "";
 	Man pl = ib.GetHierarchyRootPlayer();
 	if (pl)
 	{
 		EntityAI pea = EntityAI.Cast(pl);
 		if (pea)
 		{
-			string playerCanon; int pl1; int pl2; int pl3; int pl4;
+			string playerCanon;
+			int pl1;
+			int pl2;
+			int pl3;
+			int pl4;
 			bool okPl = SP_GetPersistentCanon(pea, playerCanon, pl1, pl2, pl3, pl4);
-			if (okPl) { holderClass = "player"; holderId = playerCanon; return; }
+			if (okPl)
+			{
+				holderClass = "player";
+				holderId = playerCanon;
+				return;
+			}
 		}
 	}
 	EntityAI parent = ib.GetHierarchyParent();
 	if (parent)
 	{
-		string parentCanon; int pa1; int pa2; int pa3; int pa4;
+		string parentCanon;
+		int pa1;
+		int pa2;
+		int pa3;
+		int pa4;
 		bool okPa = SP_GetPersistentCanon(parent, parentCanon, pa1, pa2, pa3, pa4);
-		if (okPa) { holderClass = parent.GetType(); holderId = parentCanon; }
+		if (okPa)
+		{
+			holderClass = parent.GetType();
+			holderId = parentCanon;
+		}
 	}
 }
 static int SP_GetQty(ItemBase ib)
@@ -141,6 +198,7 @@ class SPGridScanner
 	private int m_TotalCells;
 	private int m_DoneCells;
 	private int m_Written;
+	private int m_FrameCount;
 
 	void SPGridScanner()
 	{
@@ -152,7 +210,10 @@ class SPGridScanner
 
 		m_SeenThisFrame = new map<string, int>;
 		m_Last = new map<string, ref SPItemState>;
-		m_TotalCells = 0; m_DoneCells = 0; m_Written = 0;
+		m_TotalCells = 0;
+		m_DoneCells = 0;
+		m_Written = 0;
+		m_FrameCount = 0;
 	}
 
 	bool IsRunning(){ return m_Running; }
@@ -184,11 +245,21 @@ class SPGridScanner
 			if (parts.Count() >= 9) hid  = parts.Get(8);
 			vector p = Vector(x,y,z);
 			SPItemState st = m_Last.Get(id);
-			if (!st) { st = new SPItemState(); m_Last.Insert(id, st); }
-			st.PosV = p; st.HpPct = hp; st.ClassName = cls; st.Qty = qty; st.HolderClass = hcls; st.HolderId = hid;
+			if (!st)
+			{
+				st = new SPItemState();
+				m_Last.Insert(id, st);
+			}
+			st.PosV = p;
+			st.HpPct = hp;
+			st.ClassName = cls;
+			st.Qty = qty;
+			st.HolderClass = hcls;
+			st.HolderId = hid;
 		}
 		CloseFile(fh);
 	}
+
 	private void AppendHourIndex(string id, SPItemState st)
 	{
 		string path = SP_HourIndexFile();
@@ -204,7 +275,8 @@ class SPGridScanner
 		if (m_Running) return;
 		if (!GetGame().IsServer()) return;
 
-		m_WorldName = GetGame().GetWorldName(); if (m_WorldName == string.Empty) m_WorldName = "unknown";
+		m_WorldName = GetGame().GetWorldName();
+		if (m_WorldName == string.Empty) m_WorldName = "unknown";
 		m_WorldSize = SP_WorldSizeFromName(m_WorldName);
 		m_Timestamp = SP_TimestampISO_UTC();
 
@@ -212,12 +284,16 @@ class SPGridScanner
 
 		m_FilePath = SP_HourFileUTC();
 		m_File = OpenFile(m_FilePath, FileMode.APPEND);
-		if (!m_File) { Print("[SPItemDump] Open failed: "+m_FilePath); return; }
+		if (!m_File)
+		{
+			Print("[SPItemDump] Open failed: "+m_FilePath);
+			return;
+		}
 
-		// Charger l'état de l'heure en cours AVANT scan
 		LoadHourIndex();
 
-		m_X = 0.0; m_Z = 0.0;
+		m_X = 0.0;
+		m_Z = 0.0;
 		m_SeenThisFrame.Clear();
 		m_Written = 0;
 
@@ -237,27 +313,79 @@ class SPGridScanner
 		m_Running = false;
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(this.ProcessBatch);
 
+		// Déterminer si c'est une frame de snapshot complet
+		bool isSnapshotFrame = false;
+		if (SP_FULL_SNAPSHOT_EVERY_N > 0)
+		{
+			int mod = m_FrameCount % SP_FULL_SNAPSHOT_EVERY_N;
+			if (mod == 0)
+			{
+				isSnapshotFrame = true;
+			}
+		}
+
+		if (isSnapshotFrame)
+		{
+			Print("[SPItemDump] Frame " + m_FrameCount.ToString() + " : SNAPSHOT COMPLET");
+			// Écrire TOUS les items actuels avec un flag snapshot
+			int snapshotIndex = 0;
+			int snapshotCount = m_Last.Count();
+			while (snapshotIndex < snapshotCount)
+			{
+				string snapshotId = m_Last.GetKey(snapshotIndex);
+				SPItemState snapshotSt = m_Last.Get(snapshotId);
+				if (snapshotSt)
+				{
+					// Écrire comme un item normal mais avec flag snapshot
+					string line = "{";
+					line = line + "\"type\":\"item\"";
+					line = line + ",\"snapshot\":true";
+					line = line + ",\"world\":\"" + m_WorldName + "\"";
+					line = line + ",\"worldSize\":" + m_WorldSize.ToString();
+					line = line + ",\"ts\":\"" + m_Timestamp + "\"";
+					line = line + ",\"id\":\"" + snapshotId + "\"";
+					line = line + ",\"class\":\"" + snapshotSt.ClassName + "\"";
+					line = line + ",\"name\":\"" + snapshotSt.ClassName + "\"";
+					float hp01 = snapshotSt.HpPct / 100.0;
+					line = line + ",\"hp\":" + hp01.ToString();
+					line = line + ",\"hp_percent\":" + snapshotSt.HpPct.ToString();
+					line = line + ",\"qty\":" + snapshotSt.Qty.ToString();
+					line = line + ",\"pos\":{\"x\":" + snapshotSt.PosV[0].ToString() + ",\"y\":" + snapshotSt.PosV[1].ToString() + ",\"z\":" + snapshotSt.PosV[2].ToString() + "}";
+					line = line + ",\"holder_class\":\"" + snapshotSt.HolderClass + "\"";
+					line = line + ",\"holder_id\":\"" + snapshotSt.HolderId + "\"";
+					line = line + "}";
+					if (m_File) FPrintln(m_File, line);
+				}
+				snapshotIndex = snapshotIndex + 1;
+			}
+		}
+
+		// Log des suppressions (si activé)
 		if (SP_LOG_REMOVALS == 1)
 		{
-			int i = 0;
-			int count = m_Last.Count();
-			while (i < count)
+			int removalIndex = 0;
+			int removalCount = m_Last.Count();
+			while (removalIndex < removalCount)
 			{
-				string id = m_Last.GetKey(i);
-				if (!m_SeenThisFrame.Contains(id))
+				string removalId = m_Last.GetKey(removalIndex);
+				if (!m_SeenThisFrame.Contains(removalId))
 				{
-					string rm = "{\"type\":\"item_remove\",\"world\":\""+m_WorldName+"\",\"worldSize\":"+m_WorldSize.ToString()+",\"ts\":\""+m_Timestamp+"\",\"id\":\""+id+"\"}";
+					string rm = "{\"type\":\"item_remove\",\"world\":\""+m_WorldName+"\",\"worldSize\":"+m_WorldSize.ToString()+",\"ts\":\""+m_Timestamp+"\",\"id\":\""+removalId+"\"}";
 					if (m_File) FPrintln(m_File, rm);
-					m_Last.Remove(id);
-					count = m_Last.Count();
-					i = i - 1;
+					m_Last.Remove(removalId);
+					removalCount = m_Last.Count();
+					removalIndex = removalIndex - 1;
 				}
-				i = i + 1;
+				removalIndex = removalIndex + 1;
 			}
 		}
 
 		if (m_File) CloseFile(m_File);
-		Print("[SPItemDump] Frame "+m_Timestamp+" done. items_written="+m_Written.ToString());
+		
+		// Incrémenter le compteur de frames
+		m_FrameCount = m_FrameCount + 1;
+		
+		Print("[SPItemDump] Frame "+m_Timestamp+" done. items_written="+m_Written.ToString()+" frame_count="+m_FrameCount.ToString());
 	}
 
 	private bool HasChanged(ref SPItemState prev, vector p, int hpPct, string cls, int qty, string holderClass, string holderId)
@@ -265,7 +393,8 @@ class SPGridScanner
 		if (!prev) return true;
 		float dist = vector.Distance(prev.PosV, p);
 		if (dist >= SP_MOVE_EPS) return true;
-		int dhp = hpPct - prev.HpPct; if (dhp < 0) dhp = -dhp;
+		int dhp = hpPct - prev.HpPct;
+		if (dhp < 0) dhp = -dhp;
 		if (dhp >= SP_HP_EPS_PCT) return true;
 		if (prev.ClassName != cls) return true;
 		if (prev.Qty != qty) return true;
@@ -273,11 +402,21 @@ class SPGridScanner
 		if (prev.HolderId != holderId) return true;
 		return false;
 	}
+
 	private void UpdateCache(string id, vector p, int hpPct, string cls, int qty, string holderClass, string holderId)
 	{
 		SPItemState st = m_Last.Get(id);
-		if (!st) { st = new SPItemState(); m_Last.Insert(id, st); }
-		st.PosV = p; st.HpPct = hpPct; st.ClassName = cls; st.Qty = qty; st.HolderClass = holderClass; st.HolderId = holderId;
+		if (!st)
+		{
+			st = new SPItemState();
+			m_Last.Insert(id, st);
+		}
+		st.PosV = p;
+		st.HpPct = hpPct;
+		st.ClassName = cls;
+		st.Qty = qty;
+		st.HolderClass = holderClass;
+		st.HolderId = holderId;
 		AppendHourIndex(id, st);
 	}
 
@@ -321,46 +460,73 @@ class SPGridScanner
 
 	private void ProcessOneCell()
 	{
-		if (m_Z > m_WorldSize) { m_X = m_X + m_Step; m_Z = 0.0; }
-		if (m_X > m_WorldSize) { return; }
+		if (m_Z > m_WorldSize)
+		{
+			m_X = m_X + m_Step;
+			m_Z = 0.0;
+		}
+		if (m_X > m_WorldSize)
+		{
+			return;
+		}
 
 		vector pos = Vector(m_X, 0, m_Z);
 		array<Object> objects = new array<Object>;
 		GetGame().GetObjectsAtPosition3D(pos, m_Radius, objects, NULL);
 
-		int i = 0;
-		while (i < objects.Count())
+		int objIndex = 0;
+		while (objIndex < objects.Count())
 		{
-			Object o = objects.Get(i);
+			Object o = objects.Get(objIndex);
 			if (o)
 			{
 				EntityAI e = EntityAI.Cast(o);
 				ItemBase ib = ItemBase.Cast(o);
 				if (e && ib)
 				{
-					// ID persistant uniquement
-					string canon; int ip1; int ip2; int ip3; int ip4;
+					string canon;
+					int ip1;
+					int ip2;
+					int ip3;
+					int ip4;
 					bool okId = SP_GetPersistentCanon(e, canon, ip1, ip2, ip3, ip4);
-					if (!okId) { i = i + 1; continue; } // ignore sans ID persistant
+					if (!okId)
+					{
+						objIndex = objIndex + 1;
+						continue;
+					}
 
-					// éviter double traitement dans la frame
-					if (m_SeenThisFrame.Contains(canon)) { i = i + 1; continue; }
+					if (m_SeenThisFrame.Contains(canon))
+					{
+						objIndex = objIndex + 1;
+						continue;
+					}
 					m_SeenThisFrame.Insert(canon, 1);
 
 					vector p = ib.GetPosition();
-					float hp01 = ib.GetHealth01("", ""); if (hp01 < 0.0) hp01 = 0.0; if (hp01 > 1.0) hp01 = 1.0;
+					float hp01 = ib.GetHealth01("", "");
+					if (hp01 < 0.0) hp01 = 0.0;
+					if (hp01 > 1.0) hp01 = 1.0;
 					int hpPct = Math.Round(hp01 * 100.0);
 					string cls = ib.GetType();
 					string name = SP_GetDisplayNameSafe(ib);
 					int qty = SP_GetQty(ib);
-					string holderClass; string holderId; SP_GetHolderInfo(ib, holderClass, holderId);
+					string holderClass;
+					string holderId;
+					SP_GetHolderInfo(ib, holderClass, holderId);
 
 					SPItemState prev = m_Last.Get(canon);
 					bool changed = HasChanged(prev, p, hpPct, cls, qty, holderClass, holderId);
 
 					bool shouldWrite = false;
-					if (!prev) shouldWrite = true;           // nouveau dans l'heure
-					else if (changed) shouldWrite = true;    // delta
+					if (!prev)
+					{
+						shouldWrite = true;
+					}
+					else if (changed)
+					{
+						shouldWrite = true;
+					}
 
 					if (shouldWrite)
 					{
@@ -369,7 +535,7 @@ class SPGridScanner
 					}
 				}
 			}
-			i = i + 1;
+			objIndex = objIndex + 1;
 		}
 
 		m_DoneCells = m_DoneCells + 1;
@@ -379,8 +545,16 @@ class SPGridScanner
 
 // ---------------- scheduler ----------------
 static ref SPGridScanner g_SPScanner;
-static void SP_StartDumpSafe(){ if (!g_SPScanner) g_SPScanner = new SPGridScanner(); if (!g_SPScanner.IsRunning()) g_SPScanner.Start(); }
-static void SP_TryStartPeriodic(){ if (!g_SPScanner) g_SPScanner = new SPGridScanner(); if (!g_SPScanner.IsRunning()) g_SPScanner.Start(); }
+static void SP_StartDumpSafe()
+{
+	if (!g_SPScanner) g_SPScanner = new SPGridScanner();
+	if (!g_SPScanner.IsRunning()) g_SPScanner.Start();
+}
+static void SP_TryStartPeriodic()
+{
+	if (!g_SPScanner) g_SPScanner = new SPGridScanner();
+	if (!g_SPScanner.IsRunning()) g_SPScanner.Start();
+}
 modded class MissionServer
 {
 	override void OnMissionStart()
