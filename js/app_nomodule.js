@@ -94,28 +94,25 @@
     const target = markerCluster || layerGroup;
     if (!target) return;
 
-    if (state.currentFrame !== lastFrameIndex){
-      if (markerCluster) {
-        markerCluster.clearLayers();
-      } else if (layerGroup) {
-        layerGroup.clearLayers();
-      }
-      state.markerById.clear();
-      lastFrameIndex = state.currentFrame;
-    }
+    console.log('[Render] Starting render. Current markers:', state.markerById.size, 'Want:', state.filtered.length);
 
+    // want = UNIQUEMENT les items dans state.filtered (classes cochées)
     const want = new Map();
     for (let i=0; i<state.filtered.length; i++){ 
       const it = state.filtered[i]; 
       want.set(it.id, it); 
     }
 
+    // Supprimer les markers qui ne sont plus voulus
     const toRemove = [];
     for (const [id, mk] of Array.from(state.markerById.entries())){
       if (!want.has(id)){
         toRemove.push({id, mk});
       }
     }
+    
+    console.log('[Render] Removing', toRemove.length, 'markers');
+    
     for (const {id, mk} of toRemove) {
       if (markerCluster) {
         markerCluster.removeLayer(mk);
@@ -125,9 +122,17 @@
       state.markerById.delete(id);
     }
 
+    // Ajouter les markers manquants
     const toAdd = [];
     for (const [id, it] of want.entries()){
       if (!state.markerById.has(id)) toAdd.push(it);
+    }
+
+    console.log('[Render] Adding', toAdd.length, 'markers');
+
+    if (toAdd.length === 0) {
+      console.log('[Render] Nothing to add, done');
+      return;
     }
 
     let i = 0;
@@ -166,6 +171,8 @@
       
       if (i < toAdd.length) {
         requestAnimationFrame(step);
+      } else {
+        console.log('[Render] Done adding markers. Total:', state.markerById.size);
       }
     }
     
@@ -187,6 +194,7 @@
   // ----- RECONSTRUCTION D'ÉTAT PAR FRAME -----
   function buildFramesWithFullState(allItems){
     console.log('[Timeline] Construction des frames avec état complet...');
+    console.log('[Timeline] Input items:', allItems.length);
     
     const byTs = new Map();
     for (let i = 0; i < allItems.length; i++){
@@ -200,7 +208,7 @@
     console.log('[Timeline] ' + tsList.length + ' timestamps trouvés');
     
     const frames = [];
-    const itemsState = new Map();
+    const itemsState = new Map(); // id -> dernier état connu
     
     for (let t = 0; t < tsList.length; t++){
       const ts = tsList[t];
@@ -211,12 +219,35 @@
         
         if (item.type === "item_remove") {
           itemsState.delete(item.id);
+          console.log('[Timeline] Removed item:', item.id);
         } else if (item.type === "item") {
+          // IMPORTANT: Vérifier si l'item existe déjà pour éviter les doublons
+          if (itemsState.has(item.id)) {
+            console.log('[Timeline] Updating existing item:', item.id);
+          } else {
+            console.log('[Timeline] Adding new item:', item.id);
+          }
           itemsState.set(item.id, item);
         }
       }
       
       const frameItems = Array.from(itemsState.values());
+      
+      // Vérifier les doublons d'IDs dans frameItems
+      const idCheck = new Set();
+      const duplicates = [];
+      for (let i = 0; i < frameItems.length; i++) {
+        const id = frameItems[i].id;
+        if (idCheck.has(id)) {
+          duplicates.push(id);
+        }
+        idCheck.add(id);
+      }
+      
+      if (duplicates.length > 0) {
+        console.error('[Timeline] DUPLICATES FOUND in frame', t, ':', duplicates);
+      }
+      
       frames.push({ 
         ts: ts, 
         items: frameItems,
@@ -225,7 +256,7 @@
       });
       
       if (t % 10 === 0 || t === tsList.length - 1) {
-        console.log('[Timeline] Frame ' + t + '/' + tsList.length + ' : ' + frameItems.length + ' items');
+        console.log('[Timeline] Frame ' + t + '/' + tsList.length + ' : ' + frameItems.length + ' items (unique IDs: ' + idCheck.size + ')');
       }
     }
     
@@ -261,7 +292,16 @@
     }
     
     state.currentFrame = 0;
-    lastFrameIndex = -1;
+    
+    // IMPORTANT: Forcer un nettoyage complet
+    console.log('[Load] Clearing map before reload');
+    if (markerCluster) {
+      markerCluster.clearLayers();
+    } else if (layerGroup) {
+      layerGroup.clearLayers();
+    }
+    state.markerById.clear();
+    lastFrameIndex = -1; // Force le clean au premier applyFilters
 
     const classSet = new Set();
     for (let i = 0; i < all.length; i++){
@@ -272,6 +312,9 @@
 
     buildFilters();
     buildPlayer();
+    
+    // IMPORTANT: applyFilters va maintenant gérer le rendu des markers
+    console.log('[Load] Calling applyFilters');
     applyFilters();
     
     console.log('[Load] Chargement terminé');
@@ -280,12 +323,23 @@
   function parseLjson(text){
     const lines = text.split(/\r?\n/);
     const out = [];
+    const seenIds = new Set();
+    let duplicateCount = 0;
+    
     for (let i = 0; i < lines.length; i++){
       const ln = lines[i].trim();
       if (!ln) continue;
       try{
         const o = JSON.parse(ln);
         if (o.type === "item" && o.pos) {
+          // Vérifier les doublons d'ID dans le même timestamp
+          const key = o.id + '_' + (o.ts || '0');
+          if (seenIds.has(key)) {
+            duplicateCount++;
+            console.warn('[Parse] Duplicate item found:', o.id, 'at', o.ts);
+          } else {
+            seenIds.add(key);
+          }
           out.push(o);
         } else if (o.type === "item_remove" && o.id) {
           out.push(o);
@@ -294,12 +348,21 @@
         console.warn('[Parse] Ligne invalide ignorée:', ln.substring(0, 50));
       }
     }
+    
+    if (duplicateCount > 0) {
+      console.warn('[Parse] Total duplicates found:', duplicateCount);
+    }
+    
     return out;
   }
 
   // ----- Filtres -----
   function applyFilters(){
-    if (state.currentFrame !== lastFrameIndex){
+    // TOUJOURS nettoyer au premier appel ou quand on change de frame
+    const shouldClear = (lastFrameIndex === -1) || (state.currentFrame !== lastFrameIndex);
+    
+    if (shouldClear){
+      console.log('[Filters] Clearing all markers (frame change or initial load)');
       if (markerCluster) {
         markerCluster.clearLayers();
       } else if (layerGroup) {
@@ -312,9 +375,10 @@
     const q = state.searchText.toLowerCase();
     const frameItems = state.frames.length > 0 ? state.frames[state.currentFrame].items : state.items;
 
-    // Filtrer UNIQUEMENT pour la carte (selon classAllow)
+    // Filtrer pour la carte : SEULEMENT les classes cochées
     let arrForMap = frameItems.filter(it => state.classAllow.has(it.class));
     
+    // Appliquer la recherche SEULEMENT si du texte est saisi
     if (q){
       arrForMap = arrForMap.filter(it =>
         (it.name||'').toLowerCase().includes(q) ||
@@ -323,7 +387,10 @@
       );
     }
     
+    // state.filtered = items affichés sur la CARTE uniquement
     state.filtered = arrForMap;
+    
+    console.log('[Filters] Filtered items:', state.filtered.length, 'Total markers on map:', state.markerById.size);
     
     if (!state.detailsOpen) {
       renderList();
